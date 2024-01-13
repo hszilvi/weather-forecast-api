@@ -15,42 +15,150 @@
 </head>
 
 <body>
-  <header class="container-fluid text-center text-white bg-dark p-2 weather-header">
+    <!-- header -->
+  <header class="container-fluid text-center text-white bg-warning p-2 weather-header">
     <h1>Weather Dashboard</h1>
   </header>
 
   <!-- max-width for ultra wide resolutions -->
   <div class="container-fluid" style="max-width: 1400px">
+    <!-- it contains the search element and the 'today weather'  -->
     <div class="row">
-      <aside class="col-lg-3 pb-3">
-        <h2 id="form-heading" class="mt-1 h3 form-label">
-          Search for a City:
-        </h2>
-        <form id="search-form" class="form">
-          <div class="form-inline form-group">
-            <div class="input-group">
-              <input class="form-input weather-search" type="text" id="search-input" placeholder="London"
-                aria-labelledby="form-heading" aria-controls="today forecast" />
-              <div class="input-group-append">
-                <button type="submit" class="btn search-button" id="search-button" aria-label="submit search">
-                  Search
-                </button>
-                <hr class="hr weather-hr" />
-              </div>
+
+        <aside class="col-lg-3 pb-3">
+            <h2 id="form-heading" class="mt-1 mb-3 h3 form-label">
+            Search for a City:
+            </h2>
+            <form id="search-form" class="form border border-warning rounded mb-3 shadow-sm" style="width: 15em;">
+            <div class="form-group mb-2 mt-2">
+                <div class="input-group justify-content-center">
+                <input class="form-input weather-search mb-3" type="text" id="search-input" placeholder="London"
+                    aria-labelledby="form-heading" aria-controls="today forecast" style="width: 90%;" />
+                <div class="input-group justify-content-center">
+                    <button type="submit" class="btn btn-warning search-button" id="search-button" aria-label="submit search" style="width: 90%;">
+                    Search
+                    </button>
+                    <!-- <hr class="hr weather-hr" /> -->
+                </div>
+                </div>
             </div>
-          </div>
-        </form>
+            </form>
+            <form id="history" class="city-list form border rounded shadow-sm" style="width: 15em;">
+                <div class="input-group justify-content-center mb-1 mt-2">
+                    <button class="btn btn-outline-danger" style="width: 90%;">London</button>
+                </div>
+                <div class="input-group justify-content-center">
+                    <button class="btn btn-outline-danger" style="width: 90%;">Budapest</button>
+                </div>
+                <div class="input-group mt-3 mb-3 ml-1">
+                    <button class="btn btn-danger">Clear</button>
+                </div>
+
+                
+
+
+
+            </form>
         <!-- inside list-group come all the cities as buttons -->
-        <div class="list-group" id="history">List group</div>
       </aside>
+
 <!-- into this div populate the data user wanted -->
-      <div class="col-lg-9 pb-3 bg-dark">
-        <!-- today weather data -->
-        <section id="today" class="mt-3 bg-info" role="region" aria-live="polite">Today</section>
-        <!-- next five day weather data -->
-        <section id="forecast" class="row mt-3" role="region" aria-live="polite">Forecast</section>
-      </div>
+    <div class="col-lg-9 pb-3">
+        <div class="col-lg-12 bg-warning-subtle border rounded mt-2 shadow-sm">
+            <!-- today weather data -->
+            <section id="today" class="mt-3 d-flex flex-row justify-content-between" role="region" aria-live="polite" style="width: 100%;">
+                <!-- <div class="row"> -->
+                    <div class="ms-4 mt-2 mb-4" style="width: 30em;">
+                        <h2 class=" h1 mb-3 text-left lh-2">London<br><span class=" h3 font-monospace text-primary font-weight-bold">13/1/2023</span></h2>
+                        <div class="card-body">
+                            <p class="card-text">Temperature: <span>10</span>°C</p>
+                            <p class="card-text">Humidity: <span>55</span>%</p>
+                            <p class="card-text">Wind: <span>10</span>km/h</p>
+                        </div>
+                    </div>
+                    <div class=" text-center mx-auto pt-4" style="width: 20em;">
+                        <img class="mx-auto mt-2 mb-3" src="./assets/images/icon-placholder.png" alt="Card image cap" style="width: 5em;">
+                        <div class="card-body">                      
+                            <p class="card-text text-center">Partly cloudy</p>
+                        </div>
+                    </div>
+
+                <!-- </div> -->
+
+
+            </section>
+            <!-- next five day weather data -->
+            <!-- <section id="forecast" class="row mt-3" role="region" aria-live="polite">Forecast where are you?</section> -->
+        </div>
+
+
+        <div class="col-lg-12 pb-3">
+
+            <!-- today weather data -->
+            <h2 id="five-day" class="mt-1 mb-3 h3">5 day forecast</h2>
+            <div class="row mt-3">
+                <!-- card 1 -->
+                <div class="card m-1 bg-info-subtle shadow-sm" style="width: 12.5em;">
+                    <h5 class="card-title mt-2 text-center lh-2">13/1/2023<br><span class="font-monospace text-primary font-weight-bold">Saturday</span></h5>
+                    <img class="card-img-top mx-auto mt-2 mb-3" src="./assets/images/icon-placholder.png" alt="Card image cap" style="width: 2em;">
+                    <div class="card-body">
+                    
+                        <p class="card-text">Temperature: <span>10</span>°C</p>
+                        <p class="card-text">Humidity: <span>55</span>%</p>
+                        <p class="card-text">Wind: <span>10</span>km/h</p>
+                    </div>
+                </div>
+                <div class="card m-1 bg-info-subtle shadow-sm" style="width: 12.5em;">
+                    <h5 class="card-title mt-2 text-center lh-2">14/1/2023<br><span class="font-monospace text-primary font-weight-bold">Sunday</span></h5>
+                    <img class="card-img-top mx-auto mt-2 mb-3" src="./assets/images/icon-placholder.png" alt="Card image cap" style="width: 2em;">
+                    <div class="card-body">
+                    
+                        <p class="card-text">Temperature: <span>10</span>°C</p>
+                        <p class="card-text">Humidity: <span>55</span>%</p>
+                        <p class="card-text">Wind: <span>10</span>km/h</p>
+                    </div>
+                </div>
+                <div class="card m-1 bg-info-subtle shadow-sm" style="width: 12.5em;">
+                    <h5 class="card-title mt-2 text-center lh-2">15/1/2023<br><span class="font-monospace text-primary font-weight-bold">Monday</span></h5>
+                    <img class="card-img-top mx-auto mt-2 mb-3" src="./assets/images/icon-placholder.png" alt="Card image cap" style="width: 2em;">
+                    <div class="card-body">
+                    
+                        <p class="card-text">Temperature: <span>10</span>°C</p>
+                        <p class="card-text">Humidity: <span>55</span>%</p>
+                        <p class="card-text">Wind: <span>10</span>km/h</p>
+                    </div>
+                </div>
+                <div class="card m-1 bg-info-subtle shadow-sm" style="width: 12.5em;">
+                    <h5 class="card-title mt-2 text-center lh-2">12/1/2023<br><span class="font-monospace text-primary font-weight-bold">Saturday</span></h5>
+                    <img class="card-img-top mx-auto mt-2 mb-3" src="./assets/images/icon-placholder.png" alt="Card image cap" style="width: 2em;">
+                    <div class="card-body">
+                    
+                        <p class="card-text">Temperature: <span>10</span>°C</p>
+                        <p class="card-text">Humidity: <span>55</span>%</p>
+                        <p class="card-text">Wind: <span>10</span>km/h</p>
+                    </div>
+                </div>
+                <div class="card m-1 bg-info-subtle shadow-sm" style="width: 12.5em;">
+                    <h5 class="card-title mt-2 text-center lh-2">12/1/2023<br><span class="font-monospace text-primary font-weight-bold">Saturday</span></h5>
+                    <img class="card-img-top mx-auto mt-2 mb-3" src="./assets/images/icon-placholder.png" alt="Card image cap" style="width: 2em;">
+                    <div class="card-body">
+                    
+                        <p class="card-text">Temperature: <span>10</span>°C</p>
+                        <p class="card-text">Humidity: <span>55</span>%</p>
+                        <p class="card-text">Wind: <span>10</span>km/h</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- next five day weather data -->
+            <!-- <section id="forecast" class="row mt-3" role="region" aria-live="polite">Forecast where are you?</section> -->
+        </div>
+
     </div>
+
+</div>
+
+    <!-- container fluid ends -->
   </div>
   <!-- bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
