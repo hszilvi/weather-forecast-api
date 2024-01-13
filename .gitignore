@@ -130,3 +130,4 @@ dist
 .pnp.*
 
 ./assets/js/config.js
+.config2.js
