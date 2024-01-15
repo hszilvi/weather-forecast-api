@@ -1,0 +1,51 @@
+                        // for(i=0; i <=5; i++) {
+                            // let displayedData = [
+                            //     {
+                            //         day: dayjs(data.list[0].dt_txt).format('D/M/YYYY'),
+                            //         temp: Math.round(data.list[0].main.temp),
+                            //         hum: data.list[0].main.humidity,
+                            //         wind: Math.round(data.list[0].wind.gust),   
+                            //         icon: data.list[0].weather[0].icon        
+                            // },
+                            //     {
+                            //         day: dayjs(data.list[1].dt_txt).format('D/M/YYYY'),
+                            //         temp: Math.round(data.list[1].main.temp),
+                            //         hum: data.list[1].main.humidity,
+                            //         wind: Math.round(data.list[1].wind.gust),   
+                            //         icon: data.list[1].weather[1].icon        
+                            // },
+                            //     {
+                            //         day: dayjs(data.list[2].dt_txt).format('D/M/YYYY'),
+                            //         temp: Math.round(data.list[2].main.temp),
+                            //         hum: data.list[2].main.humidity,
+                            //         wind: Math.round(data.list[2].wind.gust),   
+                            //         icon: data.list[2].weather[2].icon        
+                            // },
+                            //     {
+                            //         day: dayjs(data.list[3].dt_txt).format('D/M/YYYY'),
+                            //         temp: Math.round(data.list[3].main.temp),
+                            //         hum: data.list[3].main.humidity,
+                            //         wind: Math.round(data.list[3].wind.gust),   
+                            //         icon: data.list[3].weather[3].icon        
+                            // },
+                            //     {
+                            //         day: dayjs(data.list[4].dt_txt).format('D/M/YYYY'),
+                            //         temp: Math.round(data.list[4].main.temp),
+                            //         hum: data.list[4].main.humidity,
+                            //         wind: Math.round(data.list[4].wind.gust),   
+                            //         icon: data.list[4].weather[4].icon        
+                            // },
+                            //     {
+                            //         day: dayjs(data.list[5].dt_txt).format('D/M/YYYY'),
+                            //         temp: Math.round(data.list[5].main.temp),
+                            //         hum: data.list[5].main.humidity,
+                            //         wind: Math.round(data.list[5].wind.gust),   
+                            //         icon: data.list[5].weather[5].icon        
+                            // },
+                            // ]
+
+                        // }
+                        
+
+
+// console.log(displayedData);
