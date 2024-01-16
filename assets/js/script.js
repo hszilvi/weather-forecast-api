@@ -25,7 +25,10 @@ function defaultToday() {
                 fetch(newQueryURL).then(function (response) {
                     return response.json();
                 }).then(function (data) {
+                    // today data -----------------------------------------------------------
                     console.log(data); // to check data I need in console 
+                    today = dayjs(data.list[0].dt_txt);
+                    console.log(today);
                     cityCurrent.text(data.city.name);
                     dayZero.text(dayjs(data.list[0].dt_txt).format('D/M/YYYY'));
                     temp.text(Math.round(data.list[0].main.temp)); //round the value
@@ -36,11 +39,33 @@ function defaultToday() {
                     $('#displayed-icon').attr("src",  `https://openweathermap.org/img/wn/${icon}@4x.png`); // display img using icon variable that stores icon id, 4x at the end of http contains the size
                     console.log(data.list[0].dt_txt); //current data and time
                     console.log(data.list[0].weather[0].icon); // icon id
-                    // get five day forecast and pass data to html
+                    // get five day forecast and pass data to html only daytime values---------------------------
+                    const futureDaysData = [];
+                    const nDays = 5;
+                    for (let i=0; i<=nDays; i++) {
+                        // fill up the future days with dates
+                        const date = today.add(1, 'day');
+                        futureDaysData.push(date);
+                    }
+                    console.log(futureDaysData);
+                    for (let i = 1; i< 6; i++) {
+                        if(data.list[i].dt_txt.includes('12:00:00')) {
+                            console.log(data.list[i]);
+                            $('.card-title').text(dayjs(data.list[i].dt_txt).format('D/M/YYYY'));
+                            $('.temp-value').text(data.list[i].main.temp);
+
+                        }
+
+                    }
+
+                    // -----------------------------------------------------------------------
+
         })
     })
 }
-
+function createForecastDisplay(futureData) {
+    console.log('future');
+}
 // ----------------------Search and cities list section-------------------------------
 // create button elements from user City inputs 
 function renderBtns() {
@@ -96,3 +121,4 @@ function changeDisplayCity(newVal) {
 
 
 defaultToday(displayedCity);
+createForecastDisplay();
