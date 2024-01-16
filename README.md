@@ -33,14 +33,15 @@ When a user click on a city in the search history they are again presented with 
 I finished the challenge using jQuery and events around local storage.
 
 ## Screenshots
-[stored data](./assets/images/s)
 [show listed cities](./assets/images/Screenshot%202024-01-16%20at%2021-45-06%20Weather%20Dashboard.png)
 ![show starter page](./assets/images/Screenshot-Weather-Dashboard.png)
 [wireframe](./assets/images/wireframe.jpg)
+# Video
+[show how the site works](./assets/images/Weather%20Dashboard%20—%20Mozilla%20Firefox%202024-01-16%2022-04-10.mp4)
 
 ### Links
 the github page of the solutin[https://github.com/hszilvi/weather-forecast-api]
-live link[]
+live link[https://hszilvi.github.io/weather-forecast-api/] This is blocked because of API / check on mp4 linked in readme
 
 ## My_process
 At first I created the HTML file with bootstrap. Applied for an API key to use OpenWeather. At first I created the search and store City component than displayed the current weather data. 
