@@ -41,7 +41,7 @@ I finished the challenge using jQuery and events around local storage.
 
 ### Links
 the github page of the solutin[https://github.com/hszilvi/weather-forecast-api]
-live link[https://hszilvi.github.io/weather-forecast-api/] This is blocked because of API / check on mp4 linked in readme
+live link[https://hszilvi.github.io/weather-forecast-api/]
 
 ## My_process
 At first I created the HTML file with bootstrap. Applied for an API key to use OpenWeather. At first I created the search and store City component than displayed the current weather data. 
