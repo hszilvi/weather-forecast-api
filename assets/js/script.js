@@ -9,6 +9,11 @@ const hum = $('#displayed-hum');
 const wind = $('#displayed-wind');
 let icon = $('#displayed-icon');
 const descr = $('#displayed-descr');
+const middays = []
+const fiveTemp = []
+const fiveHum = []
+const fiveWind = [];
+const fiveAttrSrc = []
 // --------------------------fetch data and print it to screen section -------------------------------
 // function to update default data in today section--------------------- 
 function defaultToday() {
@@ -37,35 +42,78 @@ function defaultToday() {
                     descr.text(data.list[0].weather[0].description);
                     icon = data.list[0].weather[0].icon;
                     $('#displayed-icon').attr("src",  `https://openweathermap.org/img/wn/${icon}@4x.png`); // display img using icon variable that stores icon id, 4x at the end of http contains the size
-                    console.log(data.list[0].dt_txt); //current data and time
+                    console.log(typeof(data.list[0].dt_txt)); //current data and time
                     console.log(data.list[0].weather[0].icon); // icon id
                     // get five day forecast and pass data to html only daytime values---------------------------
-                    const futureDaysData = [];
-                    const nDays = 5;
-                    for (let i=0; i<=nDays; i++) {
-                        // fill up the future days with dates
-                        const date = today.add(1, 'day');
-                        futureDaysData.push(date);
-                    }
-                    console.log(futureDaysData);
-                    for (let i = 1; i< 6; i++) {
+                    for (let i = 1; i< 40; i++) {
+                        // console.log(data.list[i].dt_txt)
                         if(data.list[i].dt_txt.includes('12:00:00')) {
-                            console.log(data.list[i]);
-                            $('.card-title').text(dayjs(data.list[i].dt_txt).format('D/M/YYYY'));
-                            $('.temp-value').text(data.list[i].main.temp);
-
+                            // console.log(data.list[i]);
+                            middays.push(dayjs(data.list[i].dt_txt).format('D/M/YYYY'));
+                            fiveTemp.push(Math.round(data.list[i].main.temp));
+                            fiveHum.push(data.list[i].main.humidity);
+                            fiveWind.push(Math.round(data.list[i].wind.gust));
+                            fiveAttrSrc.push(data.list[i].weather[0].icon);
+                            
                         }
-
                     }
+                    // let fiveDaysContent = document.getElementsByClassName('card-title');
+                    // let fiveTempContent = $('.temp-value');
+                    for (let i=0; i < middays.length; i++) {
+                        
+                    //    fiveDaysContent[i].innerHtml = middays[i];
+                    //    console.log(fiveDaysContent);
+                    //    console.log(middays[i])
+                    //    console.log(fiveDaysContent[i].innerHtml)
+                    //    fiveTempContent[i].innerHtml = fiveTemp[i];
+                    //    console.log(fiveTempContent[i].innerHtml)
+                    
 
+                        const createEl = 
+                            `<div class="card m-1 bg-info-subtle shadow-sm" style="width: 12.5em;">
+                            <h5 class="card-title mt-2 mb-2 text-center lh-2">` +middays[i]+ `</h5>
+                            <img class="card-img-top mx-auto mt-2 mb-3 bg-info border rounded" src="`+`https://openweathermap.org/img/wn/${fiveAttrSrc[i]}@4x.png`+`" style="width: 3em;" alt="Card image cap" style="width: 2em;">
+                            <div class="card-body">                        
+                                <p class="card-text">Temperature: <span class="temp-value">` +fiveTemp[i]+`</span>°C</p>
+                                <p class="card-text">Humidity: <span>` +fiveHum[i]+`</span>%</p>
+                                <p class="card-text">Wind: <span>` +fiveWind[i]+`</span>km/h</p>
+                                </div>
+                            </div>`
+                        $('.forecast').append(createEl);
+                    }
+                    console.log(middays, fiveTemp, fiveHum, fiveWind)
+// displayFutureData();
                     // -----------------------------------------------------------------------
 
         })
     })
 }
-function createForecastDisplay(futureData) {
-    console.log('future');
-}
+
+// function displayFutureData() {
+//     for (let i=0; i < middays.length; i++) {
+
+//         const createEl = 
+//             `<div class="card m-1 bg-info-subtle shadow-sm" style="width: 12.5em;">
+//     <h5 class="card-title mt-2 text-center lh-2">` +middays[i]+ `<br>
+//     <img class="card-img-top mx-auto mt-2 mb-3 bg-info border rounded" src="./assets/images/icon-placholder.png" alt="Card image cap" style="width: 2em;">
+//     <div class="card-body">
+    
+//         <p class="card-text">Temperature: <span class="temp-value">` +fiveTemp[i]+`</span>°C</p>
+//         <p class="card-text">Humidity: <span>` +fiveHum[i]+`</span>%</p>
+//         <p class="card-text">Wind: <span>` +fiveWind[i]+`</span>km/h</p>
+//     </div>
+// </div>`
+//         $('.forecast').append(createEl);
+//         console.log(middays[i]);
+//         console.log(fiveTemp[i]);
+
+
+//     }
+
+// }
+// function createForecastDisplay(futureData) {
+//     console.log('future');
+// }
 // ----------------------Search and cities list section-------------------------------
 // create button elements from user City inputs 
 function renderBtns() {
@@ -121,4 +169,4 @@ function changeDisplayCity(newVal) {
 
 
 defaultToday(displayedCity);
-createForecastDisplay();
+// createForecastDisplay();
