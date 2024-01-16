@@ -9,11 +9,7 @@ const hum = $('#displayed-hum');
 const wind = $('#displayed-wind');
 let icon = $('#displayed-icon');
 const descr = $('#displayed-descr');
-const middays = []
-const fiveTemp = []
-const fiveHum = []
-const fiveWind = [];
-const fiveAttrSrc = []
+
 // --------------------------fetch data and print it to screen section -------------------------------
 // function to update default data in today section--------------------- 
 function defaultToday() {
@@ -45,7 +41,13 @@ function defaultToday() {
                     console.log(typeof(data.list[0].dt_txt)); //current data and time
                     console.log(data.list[0].weather[0].icon); // icon id
                     // get five day forecast and pass data to html only daytime values---------------------------
+                    const middays = []
+                    const fiveTemp = []
+                    const fiveHum = []
+                    const fiveWind = [];
+                    const fiveAttrSrc = []
                     for (let i = 1; i< 40; i++) {
+
                         // console.log(data.list[i].dt_txt)
                         if(data.list[i].dt_txt.includes('12:00:00')) {
                             // console.log(data.list[i]);
@@ -89,31 +91,6 @@ function defaultToday() {
     })
 }
 
-// function displayFutureData() {
-//     for (let i=0; i < middays.length; i++) {
-
-//         const createEl = 
-//             `<div class="card m-1 bg-info-subtle shadow-sm" style="width: 12.5em;">
-//     <h5 class="card-title mt-2 text-center lh-2">` +middays[i]+ `<br>
-//     <img class="card-img-top mx-auto mt-2 mb-3 bg-info border rounded" src="./assets/images/icon-placholder.png" alt="Card image cap" style="width: 2em;">
-//     <div class="card-body">
-    
-//         <p class="card-text">Temperature: <span class="temp-value">` +fiveTemp[i]+`</span>°C</p>
-//         <p class="card-text">Humidity: <span>` +fiveHum[i]+`</span>%</p>
-//         <p class="card-text">Wind: <span>` +fiveWind[i]+`</span>km/h</p>
-//     </div>
-// </div>`
-//         $('.forecast').append(createEl);
-//         console.log(middays[i]);
-//         console.log(fiveTemp[i]);
-
-
-//     }
-
-// }
-// function createForecastDisplay(futureData) {
-//     console.log('future');
-// }
 // ----------------------Search and cities list section-------------------------------
 // create button elements from user City inputs 
 function renderBtns() {
@@ -161,6 +138,7 @@ function setChosenCityToDisplay() {
     renderBtns();
     changeDisplayCity(chosenCity);
     defaultToday(displayedCity)
+    ;
 }
 // function to change display city / this should be called to change default city value
 function changeDisplayCity(newVal) {
