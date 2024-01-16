@@ -19,7 +19,7 @@ let fiveAttrSrc = [];
 // function to update default data in today section--------------------- 
 let count = 0
 function defaultToday() {
-    const queryURL = `http://api.openweathermap.org/geo/1.0/direct?q=${displayedCity}&appid=${myKey}`
+    const queryURL = `https://api.openweathermap.org/geo/1.0/direct?q=${displayedCity}&appid=${myKey}`
     // ----------------------------------------------
     fetch(queryURL).then(function (response) {
         return response.json();
