@@ -1,4 +1,4 @@
-const myKey = '';
+const myKey = '48cd8ede57002cd1bb9c3b730f584a0c';
 // set displayedCity to London as default value
 let displayedCity ='London';
 // global variables to display current day data
@@ -9,24 +9,33 @@ const hum = $('#displayed-hum');
 const wind = $('#displayed-wind');
 let icon = $('#displayed-icon');
 const descr = $('#displayed-descr');
+let middays = [];
+let fiveTemp = [];
+let fiveHum = [];
+let fiveWind = [];
+let fiveAttrSrc = [];
 
 // --------------------------fetch data and print it to screen section -------------------------------
 // function to update default data in today section--------------------- 
+let count = 0
 function defaultToday() {
     const queryURL = `http://api.openweathermap.org/geo/1.0/direct?q=${displayedCity}&appid=${myKey}`
     // ----------------------------------------------
     fetch(queryURL).then(function (response) {
-
         return response.json();
         }).then(function (data) {  
             console.log(data[0].lat, data[0].lon); //check coordinates
             console.log(data);  // to check data I need in console 
             const newQueryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${data[0].lat}&lon=${data[0].lon}&appid=${myKey}&units=metric`;
-
                 fetch(newQueryURL).then(function (response) {
                     return response.json();
                 }).then(function (data) {
                     // today data -----------------------------------------------------------
+                    middays = [];
+                    fiveTemp = [];
+                    fiveHum = [];
+                    fiveWind = [];
+                    fiveAttrSrc = []
                     console.log(data); // to check data I need in console 
                     today = dayjs(data.list[0].dt_txt);
                     console.log(today);
@@ -38,39 +47,21 @@ function defaultToday() {
                     descr.text(data.list[0].weather[0].description);
                     icon = data.list[0].weather[0].icon;
                     $('#displayed-icon').attr("src",  `https://openweathermap.org/img/wn/${icon}@4x.png`); // display img using icon variable that stores icon id, 4x at the end of http contains the size
-                    console.log(typeof(data.list[0].dt_txt)); //current data and time
+                    console.log((data.list[0].dt_txt)); //current data and time
                     console.log(data.list[0].weather[0].icon); // icon id
                     // get five day forecast and pass data to html only daytime values---------------------------
-                    const middays = []
-                    const fiveTemp = []
-                    const fiveHum = []
-                    const fiveWind = [];
-                    const fiveAttrSrc = []
                     for (let i = 1; i< 40; i++) {
-
-                        // console.log(data.list[i].dt_txt)
                         if(data.list[i].dt_txt.includes('12:00:00')) {
-                            // console.log(data.list[i]);
                             middays.push(dayjs(data.list[i].dt_txt).format('D/M/YYYY'));
                             fiveTemp.push(Math.round(data.list[i].main.temp));
                             fiveHum.push(data.list[i].main.humidity);
                             fiveWind.push(Math.round(data.list[i].wind.gust));
                             fiveAttrSrc.push(data.list[i].weather[0].icon);
-                            
                         }
                     }
-                    // let fiveDaysContent = document.getElementsByClassName('card-title');
-                    // let fiveTempContent = $('.temp-value');
+                    $('.forecast').empty()
                     for (let i=0; i < middays.length; i++) {
-                        
-                    //    fiveDaysContent[i].innerHtml = middays[i];
-                    //    console.log(fiveDaysContent);
-                    //    console.log(middays[i])
-                    //    console.log(fiveDaysContent[i].innerHtml)
-                    //    fiveTempContent[i].innerHtml = fiveTemp[i];
-                    //    console.log(fiveTempContent[i].innerHtml)
-                    
-
+                        // create html element for 5 days forecast
                         const createEl = 
                             `<div class="card m-1 bg-info-subtle shadow-sm" style="width: 12.5em;">
                             <h5 class="card-title mt-2 mb-2 text-center lh-2">` +middays[i]+ `</h5>
@@ -82,11 +73,9 @@ function defaultToday() {
                                 </div>
                             </div>`
                         $('.forecast').append(createEl);
+                        
                     }
-                    console.log(middays, fiveTemp, fiveHum, fiveWind)
-// displayFutureData();
                     // -----------------------------------------------------------------------
-
         })
     })
 }
@@ -145,6 +134,5 @@ function changeDisplayCity(newVal) {
     displayedCity = newVal;
 }
 
-
 defaultToday(displayedCity);
-// createForecastDisplay();
+

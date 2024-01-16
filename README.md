@@ -27,14 +27,16 @@ When a user view future weather conditions for that city they are presented with
 -An icon representation of weather conditions
 -The temperature
 -The humidity
+I set London as default city. If user doesn't chose any city, London current and 5 days forecast are displayed.
 
 When a user click on a city in the search history they are again presented with current and future conditions for that city
 I finished the challenge using jQuery and events around local storage.
 
 ## Screenshots
 [stored data](./assets/images/s)
-[show listed cities](./assets/images/)
+[show listed cities](./assets/images/Screenshot%202024-01-16%20at%2021-45-06%20Weather%20Dashboard.png)
 ![show starter page](./assets/images/Screenshot-Weather-Dashboard.png)
+[wireframe](./assets/images/wireframe.jpg)
 
 ### Links
 the github page of the solutin[https://github.com/hszilvi/weather-forecast-api]
