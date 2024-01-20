@@ -37,8 +37,8 @@ function defaultToday() {
                     fiveWind = [];
                     fiveAttrSrc = []
                     console.log(data); // to check data I need in console 
-                    today = dayjs(data.list[0].dt_txt);
-                    console.log(today);
+                    // today = dayjs(data.list[0].dt_txt);
+                    // console.log(today);
                     cityCurrent.text(data.city.name);
                     dayZero.text(dayjs(data.list[0].dt_txt).format('D/M/YYYY'));
                     temp.text(Math.round(data.list[0].main.temp)); //round the value
