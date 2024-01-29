@@ -24,8 +24,8 @@ function defaultToday() {
     fetch(queryURL).then(function (response) {
         return response.json();
         }).then(function (data) {  
-            console.log(data[0].lat, data[0].lon); //check coordinates
-            console.log(data);  // to check data I need in console 
+            // console.log(data[0].lat, data[0].lon); //check coordinates
+            // console.log(data);  // to check data I need in console 
             const newQueryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${data[0].lat}&lon=${data[0].lon}&appid=${myKey}&units=metric`;
                 fetch(newQueryURL).then(function (response) {
                     return response.json();
@@ -36,7 +36,7 @@ function defaultToday() {
                     fiveHum = [];
                     fiveWind = [];
                     fiveAttrSrc = []
-                    console.log(data); // to check data I need in console 
+                    // console.log(data); // to check data I need in console 
                     // today = dayjs(data.list[0].dt_txt);
                     // console.log(today);
                     cityCurrent.text(data.city.name);
@@ -47,8 +47,6 @@ function defaultToday() {
                     descr.text(data.list[0].weather[0].description);
                     icon = data.list[0].weather[0].icon;
                     $('#displayed-icon').attr("src",  `https://openweathermap.org/img/wn/${icon}@4x.png`); // display img using icon variable that stores icon id, 4x at the end of http contains the size
-                    console.log((data.list[0].dt_txt)); //current data and time
-                    console.log(data.list[0].weather[0].icon); // icon id
                     // get five day forecast and pass data to html only daytime values---------------------------
                     for (let i = 1; i< 40; i++) {
                         if(data.list[i].dt_txt.includes('12:00:00')) {
@@ -96,24 +94,38 @@ let searchedCities = storedCities;
 $('#search-button').on('click', function(e) {
     e.preventDefault();
     const userCity = $('#search-input').val().trim();
-    changeDisplayCity(userCity);
-    defaultToday(displayedCity)
-    console.log(userCity);
-    if (!searchedCities.includes(userCity) && userCity)  { // check to avoid duplication and don't have empty buttons
-        searchedCities.push(userCity);
-    }
-    console.log(searchedCities);
-    $('#search-input').val('') // empty input val to replace placeholder
-    localStorage.setItem('searched-cities', JSON.stringify(searchedCities));// store data in local storage
-    // call render buttons to display cities as buttons in html
-    renderBtns();
+    if (userCity) {
+        changeDisplayCity(userCity);
+        defaultToday(displayedCity)
+        console.log(userCity);
+        if (!searchedCities.includes(userCity) && userCity)  { // check to avoid duplication and don't have empty buttons
+            searchedCities.push(userCity);
+        }
+        console.log(searchedCities);
+        $('#search-input').val('') // empty input val to replace placeholder
+        localStorage.setItem('searched-cities', JSON.stringify(searchedCities));// store data in local storage
+        // call render buttons to display cities as buttons in html
+        renderBtns();
+    } 
+    // else {
+    //     changeDisplayCity('London');
+    //     defaultToday(displayedCity);
+    //     if (!searchedCities.includes(userCity) && userCity)  { // check to avoid duplication and don't have empty buttons
+    //         searchedCities.push(userCity);
+    //     }
+    //     console.log(searchedCities);
+    //     $('#search-input').val('') // empty input val to replace placeholder
+        // localStorage.setItem('searched-cities', JSON.stringify('London'));// store data in local storage
+    //     // call render buttons to display cities as buttons in html
+    //     renderBtns();
+    // }
+
 })
 renderBtns();
 
 // clear cities list and local storage
 $('#clear-button').on('click', function(e) {
     e.preventDefault();
-    console.log('clear is clicked');
     $('#history').empty();
     localStorage.clear();
     searchedCities = [];
